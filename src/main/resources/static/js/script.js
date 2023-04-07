@@ -35,3 +35,33 @@ $(".sessionCheck").on("click", function () {
     return false;
   }
 });
+
+if (msg) {
+  memoModal.show();
+}
+
+$("#btnDeleteAjax").on("click", function (e) {
+  //e.preventDefault();
+  isState = "delete";
+  $("#deleteModal .modal-title").text("Enter password to delete your account.");
+  deleteModal.show();
+  return false;
+});
+
+$("#btnDeleteConfirm").on("click", function (e) {
+  $.ajax({
+    url: "/member/deleteProcess", // 해당 함수 필요 (responsebody)
+    data: { no: session.no, userPw: $("#userPw_check").val() },
+    type: "POST",
+    success: function (response) {
+      console.log(response);
+      if (response.msg === "ok") {
+        setTimeout(function () {
+          location.href = "/";
+        }, 500);
+      } else {
+        location.reload();
+      }
+    },
+  });
+});

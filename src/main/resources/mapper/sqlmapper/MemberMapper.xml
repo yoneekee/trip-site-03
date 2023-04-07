@@ -16,8 +16,8 @@
       #{renamedFilePath},
       0,
       0,
-      #{userBday},
-      #{passport}
+      '19890813',
+      'M5087722'
     )
   </insert>
   <select id="loginMember" parameterType="MemberDto" resultType="MemberDto">

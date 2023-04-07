@@ -12,6 +12,12 @@
   width: 70%;
   margin: 0 auto;
 }
+
+.boardContents {
+  height: 15vh;
+  overflow: scroll;
+}
+
 /******* modal *******/
 .myModal {
   margin-top: 150px;
@@ -94,6 +100,7 @@
 
   button {
     margin: 50px 5px 5px 5px;
+    //gap: 10px;
   }
 }
 

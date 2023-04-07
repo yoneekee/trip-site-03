@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  xmlns:th="http://www.thymeleaf.org"
-  layout:decorate="~{/layout/layout.html}"
->
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout.html}">
   <head>
     <title>VIPBOARD</title>
   </head>
   <body>
     <div class="container" id="contents" layout:fragment="contents">
-      <h2>Vip Board</h2>
-      <table class="table table-striped mt-5">
-        <thead>
-          <tr class="text-center">
+      <div id="boardSending">
+        <h2>Vip Board</h2>
+        <table class="table">
+          <colgroup>
+            <col style="width: 25%; background-color: #eee" class="font900" />
+            <col style="width: 75%" />
+          </colgroup>
+          <tr>
             <th>Title</th>
+            <td th:text="${vipBoardDto.vipTitle}"></td>
+          </tr>
+          <tr>
             <th>Writer</th>
-            <th>Contents</th>
+            <td th:text="${memberDto.userNickname}"></td>
+          </tr>
+
+          <tr>
             <th>Date</th>
+            <td th:text="${vipBoardDto.vipRegDate}"></td>
           </tr>
-        </thead>
-        <tbody>
-          <tr class="text-center">
-            <td th:text="${vipBoardDto.vipTitle}">Title</td>
-            <td th:text="${memberDto.userNickname}">Writer</td>
-            <td th:text="${vipBoardDto.vipContents}">Contents</td>
-            <td th:text="${vipBoardDto.vipRegDate}">Date</td>
-            <td><a href="" th:href="@{/board/vipboardmodify(no=${vipBoardDto.vipNo})}">Modify</a></td>
-            <td><a href="" th:href="@{/board/vipboarddelete(no=${vipBoardDto.vipNo})}">Delete</a></td>
+
+          <tr class="boardContents">
+            <th>Contents</th>
+            <td th:text="${vipBoardDto.vipContents}"></td>
           </tr>
-        </tbody>
-      </table>
+        </table>
+
+        <div class="joinBtn">
+          <td><a href="" class="btn btn-primary" th:href="@{/board/freeboardmodify(no=${vipBoardDto.vipNo})}">Modify</a></td>
+          <td><a href="" class="btn btn-danger" th:href="@{/board/freeboarddelete(no=${vipBoardDto.vipNo})}">Delete</a></td>
+        </div>
       </div>
-      <script></script>
     </div>
   </body>
 </html>

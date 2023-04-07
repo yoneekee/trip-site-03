@@ -6,6 +6,20 @@
   text-align: center;
 }
 
+.formContainer {
+  padding: 250px 50px 200px 50px;
+}
+
+#boardSending {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.boardContents {
+  height: 15vh;
+  overflow: scroll;
+}
+
 /******* modal *******/
 .myModal {
   margin-top: 150px;
@@ -57,10 +71,6 @@
 }
 
 /******* join / login ********/
-.formContainer {
-  padding: 250px 50px 200px 50px;
-}
-
 .joinFileBtn:hover {
   background-color: #ddd;
 }
