@@ -1,20 +1,10 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  xmlns:th="http://www.thymeleaf.org"
-  layout:decorate="~{/layout/layout.html}"
->
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout.html}">
   <head>
     <title>LOGGED USER INFO</title>
   </head>
   <body>
-    <div
-      class="container formContainer"
-      id="contents"
-      layout:fragment="contents"
-      style="z-index: 99"
-    >
+    <div class="container formContainer" id="contents" layout:fragment="contents" style="z-index: 99">
       <h2>Logged User Information</h2>
       <table class="table mt-5">
         <colgroup>
@@ -37,20 +27,16 @@
           <tr>
             <th>UserId</th>
             <td>
-              <button class="btn btn-secondary"><a href="/">Home</a></button>
-              <button class="btn btn-secondary">
-                <a href="/member/logout">Logout</a>
-              </button>
-              <button class="btn btn-primary">
-                <a href="/member/modify">Modify</a>
-              </button>
-              <button class="btn btn-danger">
-                <a href="/member/delete">Delete</a>
-              </button>
+              <a href="/"><button class="btn btn-secondary">Home</button></a>
+              <a href="/member/logout"><button class="btn btn-secondary">logout</button></a>
+              <a href="/member/modify"><button class="btn btn-primary">Modify</button></a>
+              <a href="/member/delete"><button class="btn btn-danger" id="btnDeleteAjax">Delete</button> </a>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <script th:javascript></script>
     </div>
   </body>
 </html>

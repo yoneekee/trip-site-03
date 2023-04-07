@@ -1,9 +1,15 @@
 @charset "UTF-8";
-/** common **/
+/******* common *******/
 #sending {
   width: 80%;
   margin: 0 auto;
   text-align: center;
+}
+
+/******* modal *******/
+.myModal {
+  margin-top: 150px;
+  z-index: 99999;
 }
 
 /********* company **********/

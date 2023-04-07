@@ -1,28 +1,57 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  xmlns:th="http://www.thymeleaf.org"
-  layout:decorate="~{/layout/layout.html}"
->
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout.html}">
   <head>
     <title>MEMBER MODIFY</title>
   </head>
   <body>
-    <div class="container" id="contents" layout:fragment="contents">
-      <h2>MODIFY</h2>
-      <div style="z-index: 99">
-        <form action="/member/modify" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="no" th:value="${session.loggedMember.no}">
-          <input type="text" placeholder="ID" name="userId" readonly th:value="${session.loggedMember.userId}"/><br />
-          <input type="password" placeholder="Password" name="userPw" /><br />
-          <input type="text" placeholder="Name" name="userName" th:value="${session.loggedMember.userName}"/><br />
-          <input type="text" placeholder="Nickname" name="userNickname" th:value="${session.loggedMember.userNickname}"/><br />
-          <input type="email" placeholder="name@example.com" name="email" th:value="${session.loggedMember.email}"/><br />
-          <input type="text" placeholder="address" name="address" th:value="${session.loggedMember.address}"/><br />
-          <input type="file" placeholder="selfie" name="originalFile" /><br />
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+    <div class="container formContainer" id="contents" layout:fragment="contents">
+      <div id="sending">
+        <h2>MODIFY</h2>
+
+        <form action="/member/modify" method="POST" enctype="multipart/form-data">
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">ID</label>
+            <div class="iDduplCheck">
+              <input type="text" class="form-control" placeholder="ID" name="userId" th:value="${session.loggedMember.userId}" readonly />
+              <!-- <a href="/"><button class="btn btn-light">duplicate check</button></a> -->
+            </div>
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Password" name="userPw" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Name" name="userName" th:value="${session.loggedMember.userName}" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Nickname</label>
+            <input type="text" class="form-control" placeholder="Nickname" name="userNickname" th:value="${session.loggedMember.userNickname}" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="name@example.com" name="email" th:value="${session.loggedMember.email}" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Address</label>
+            <input type="text" class="form-control" placeholder="Address" name="address" th:value="${session.loggedMember.address}" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Birthday</label>
+            <input type="text" class="form-control" placeholder="Birthday" name="userBday" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Passport Number</label>
+            <input type="date" class="form-control" placeholder="Passport" name="passport" />
+          </div>
+          <div class="mb-2 leftAlign">
+            <label for="" class="form-label">Selfie</label>
+            <input type="file" class="form-control" placeholder="Selfie" name="originalFile" />
+          </div>
+          <div class="joinBtn">
+            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            <button class="btn btn-secondary btn-lg" type="reset">Reset</button>
+          </div>
         </form>
       </div>
       <script></script>

@@ -27,29 +27,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="/js/lightpick.js"></script>
     <script src="/js/script.js" defer></script>
-    <title>replyboard</title>
+    <title>Stellar Tour</title>
   </head>
   <body>
-    <div class="myLogin">
+    <!-- <div class="myLogin">
       <a href="/member/join">Join</a>
       <a href="/member/login">Login</a>
-      <a href="/member/info">MyPage</a>
+      <a href="/member/info" class="sessionCheck">MyPage</a>
+    </div> -->
+
+    <div class="myLogin" th:if="${session.loggedMember != null}">
+      <a href="/member/info" class="sessionCheck">MyPage</a>
+      <a href="/member/logout" class="sessionCheck">Logout</a>
     </div>
-
-    <!-- <th:block th:if="${session.userId != null}">
+    <div class="myLogin" th:if="${session.loggedMember == null}">
+      <a href="/member/join">Join</a>
+      <a href="/member/login">Login</a>
+    </div>
+    <!--
+    <th:block th:if="${session != null}">
       <div class="myLogin">
-        <a href="/member/info">MyPage</a>
-        <a href="/member/logout">LogOut</a>
+        <a href="/member/info" class="sessionCheck">MyPage</a>
+        <a href="/member/logout" class="sessionCheck">Logout</a>
       </div>
-    <th:block>
-
-    <th:block th:if="${session.userId ne null}">
+    <th:block> 
+    <th:block th:if="${session == null}">
       <div class="myLogin">
         <a href="/member/join">Join</a>
         <a href="/member/login">Login</a>
       </div>
-    </th:block> -->
-
+    </th:block> 
+    -->
     <header class="header">
       <h1 class="logo">
         <a href="/">
@@ -117,7 +125,7 @@
                 <a href="/board/freeboard">自由掲示板 <br />(Free Board) </a>
               </li>
               <li>
-                <a href="/board/vipboard">VIP掲示板 <br />(VIP Board) </a>
+                <a href="/board/vipboard" class="sessionCheck">VIP掲示板 <br />(VIP Board) </a>
               </li>
             </ul>
           </li>
@@ -180,6 +188,90 @@
       </div>
     </footer>
 
-    <script th:inline="javascript"></script>
+    <!-------------------- 이 아래로 모달 부분 ----------------------------->
+
+    <div class="modal fade myModal" tabindex="-1" id="memoModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p th:text="${msg}">Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade myModal" tabindex="-1" id="deleteModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><!-- ENTER YOUR PASSWORD (delete)--></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="password" class="form-label">PASSWORD</label>
+              <input type="password" class="form-control" id="password" placeholder="password" name="password" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary" id="btnDeleteConfirm" data-bs-dismiss="modal">CONFIRM</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+
+      const msg = [[${msg}]];
+      const param = [[${param}]];
+      const session = [[${session.loggedMember}]];
+      const deleteModal = new bootstrap.Modal("#deleteModal");
+      let isState = null;
+
+      if (msg) {
+        memoModal.show();
+      }
+
+      $("#btnDeleteAjax").on("click", function (e) {
+        //e.preventDefault();
+        isState = "delete";
+        $("#deleteModal .modal-title").text("Enter password to delete your account.");
+        deleteModal.show();
+        return false;
+      });
+
+
+      // $("#btnDeleteConfirm").on("click", function (e) {
+      //   console.log(param.no[0]);
+      //   $.ajax({
+      //     url: "/member/deleteAjaxProcess", // 해당 함수 필요
+      //     data: { no: param.no[0], password: $("#password").val() },
+      //     type: "POST",
+      //     success: function (response) {
+      //       console.log(response);
+      //       if (response.msg === "ok") {
+      //         setTimeout(function () {
+      //           location.href = "/";
+      //         }, 500);
+      //       } else {
+      //         location.reload();
+      //       }
+      //     },
+      //   });
+      // });
+
+
+      /*]]>*/
+    </script>
   </body>
 </html>

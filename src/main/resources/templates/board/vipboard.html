@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  xmlns:th="http://www.thymeleaf.org"
-  layout:decorate="~{/layout/layout.html}"
->
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout.html}">
   <head>
     <title>VIPBOARD</title>
   </head>
   <body>
-    <div class="container" id="contents" layout:fragment="contents">
-      <h2>Vip Board</h2>
-      <table class="table table-striped mt-5">
-        <thead>
-          <tr class="text-center">
-            <th>Title</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="item : ${vipList}" class="text-center">
-            <td><a href="" th:href="@{/board/vipboardview(no=${item.vipNo})}"  th:text="${item.vipTitle}">제목</a></td>
-            <td th:text="${item.vipRegDate}">날짜</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container formContainer" id="contents" layout:fragment="contents">
+      <div id="sending">
+        <h2>Vip Board</h2>
+        <table class="table table-striped mt-5">
+          <thead>
+            <tr class="text-center">
+              <th>Title</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="item : ${vipList}" class="text-center">
+              <td><a href="" th:href="@{/board/vipboardview(no=${item.vipNo})}" th:text="${item.vipTitle}">제목</a></td>
+              <td th:text="${item.vipRegDate}">날짜</td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="/board/vipboardwrite" class="sessionCheck"><button class="btn btn-primary btn-lg">WRITE</button></a>
       </div>
-      <script></script>
     </div>
+    <script></script>
   </body>
 </html>
