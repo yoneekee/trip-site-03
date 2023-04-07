@@ -31,7 +31,7 @@ window.addEventListener("scroll", function (e) {
 
 $(".sessionCheck").on("click", function () {
   if (session == null) {
-    alert("You need to login to access to the page");
+    alert("You need to login to utilize this function.");
     return false;
   }
 });
