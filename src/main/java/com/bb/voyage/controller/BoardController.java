@@ -108,9 +108,9 @@ public class BoardController {
   @GetMapping("/vipboardwrite")
   public String vipBoardWrite(HttpServletRequest request, HttpSession session) {
      MemberDto memberDto = (MemberDto)session.getAttribute("loggedMember");
-     if(memberDto.getUserRank()>2){
+     if(memberDto.getUserRank() >= 2){
        return "/board/vipboardwrite";
-     } else if(memberDto.getUserRank()< 2) {
+     } else if(memberDto.getUserRank() < 2) {
       return "redirect:/";
     } else {
     return "/";

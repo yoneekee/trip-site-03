@@ -36,6 +36,13 @@ $(".sessionCheck").on("click", function () {
   }
 });
 
+$(".vipCheck").on("click", function () {
+  if (session.userRank < 2) {
+    alert("You need to be a vip to utilize this function");
+    return false;
+  }
+});
+
 if (msg) {
   memoModal.show();
 }
