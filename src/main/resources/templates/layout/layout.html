@@ -44,20 +44,7 @@
       <a href="/member/join">Join</a>
       <a href="/member/login">Login</a>
     </div>
-    <!--
-    <th:block th:if="${session != null}">
-      <div class="myLogin">
-        <a href="/member/info" class="sessionCheck">MyPage</a>
-        <a href="/member/logout" class="sessionCheck">Logout</a>
-      </div>
-    <th:block> 
-    <th:block th:if="${session == null}">
-      <div class="myLogin">
-        <a href="/member/join">Join</a>
-        <a href="/member/login">Login</a>
-      </div>
-    </th:block> 
-    -->
+
     <header class="header">
       <h1 class="logo">
         <a href="/">
@@ -218,7 +205,7 @@
           <div class="modal-body">
             <div class="mb-3">
               <label for="password" class="form-label">PASSWORD</label>
-              <input type="password" class="form-control" id="password" placeholder="password" name="password" />
+              <input type="password" class="form-control" id="userPw_check" placeholder="password" name="password" />
             </div>
           </div>
           <div class="modal-footer text-center">
@@ -251,25 +238,45 @@
       });
 
 
-      // $("#btnDeleteConfirm").on("click", function (e) {
-      //   console.log(param.no[0]);
-      //   $.ajax({
-      //     url: "/member/deleteAjaxProcess", // 해당 함수 필요
-      //     data: { no: param.no[0], password: $("#password").val() },
-      //     type: "POST",
-      //     success: function (response) {
-      //       console.log(response);
-      //       if (response.msg === "ok") {
-      //         setTimeout(function () {
-      //           location.href = "/";
-      //         }, 500);
-      //       } else {
-      //         location.reload();
-      //       }
-      //     },
-      //   });
-      // });
+      $("#btnDeleteConfirm").on("click", function (e) {
+        $.ajax({
+          url: "/member/deleteProcess", // 해당 함수 필요 (responsebody)
+          data: { no: session.no, userPw: $("#userPw_check").val() },
+          type: "POST",
+          success: function (response) {
+            console.log(response);
+            if (response.msg === "ok") {
+              setTimeout(function () {
+                location.href = "/";
+              }, 500);
+            } else {
+              location.reload();
+            }
+          },
+        });
+      });
 
+
+      /*
+          @PostMapping("/deleteProcess")
+          @ResponseBody
+          public Map<String, Object> deleteProcess(
+          MemberDto memberDto,
+          HttpServletRequest request,
+          RedirectAttributes redirectAttributes)  {
+          int result = memberService.deleteMember(memberDto);
+          System.out.println(result);
+          Map<String, Object> sendJson = new HashMap<>();
+          if (result > 0) {
+            HttpSession session = request.getSession();
+            session.removeAttribute("loggedMember");
+            sendJson.put("msg", "ok");
+          } else {
+            sendJson.put("msg", "fail");
+          }
+          return sendJson;
+          }
+      */
 
       /*]]>*/
     </script>
