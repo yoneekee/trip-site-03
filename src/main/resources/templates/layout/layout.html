@@ -177,6 +177,7 @@
 
     <!-------------------- 이 아래로 모달 부분 ----------------------------->
 
+    <!---------------MODAL START------------------->
     <div class="modal fade myModal" tabindex="-1" id="memoModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -216,38 +217,58 @@
       </div>
     </div>
 
+    <div class="modal fade myModal" tabindex="-1" id="deleteBoardModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><!-- ENTER YOUR PASSWORD (delete)--></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="password" class="form-label">PASSWORD</label>
+              <input type="password" class="form-control" id="userPw_check" placeholder="password" name="password" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary" id="btnBoardDeleteConfirm" data-bs-dismiss="modal">CONFIRM</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade myModal" tabindex="-1" id="deleteVipBoardModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><!-- ENTER YOUR PASSWORD (delete)--></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="password" class="form-label">PASSWORD</label>
+              <input type="password" class="form-control" id="userPw_check" placeholder="password" name="password" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary" id="btnVipBoardDeleteConfirm" data-bs-dismiss="modal">CONFIRM</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------MODAL END------------------->
+
     <script th:inline="javascript">
       /*<![CDATA[*/
-
       const msg = [[${msg}]];
       const param = [[${param}]];
       const session = [[${session.loggedMember}]];
       const deleteModal = new bootstrap.Modal("#deleteModal");
+      const deleteBoardModal = new bootstrap.Modal("#deleteBoardModal");
+      const deleteVipBoardModal = new bootstrap.Modal("#deleteVipBoardModal");
       let isState = null;
-
-
-
-      /*
-          @PostMapping("/deleteProcess")
-          @ResponseBody
-          public Map<String, Object> deleteProcess(
-          MemberDto memberDto,
-          HttpServletRequest request,
-          RedirectAttributes redirectAttributes)  {
-          int result = memberService.deleteMember(memberDto);
-          System.out.println(result);
-          Map<String, Object> sendJson = new HashMap<>();
-          if (result > 0) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("loggedMember");
-            sendJson.put("msg", "ok");
-          } else {
-            sendJson.put("msg", "fail");
-          }
-          return sendJson;
-          }
-      */
-
       /*]]>*/
     </script>
   </body>
