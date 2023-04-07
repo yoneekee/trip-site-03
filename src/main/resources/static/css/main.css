@@ -1,4 +1,11 @@
 @charset "UTF-8";
+/** common **/
+#sending {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /********* company **********/
 .company h1 {
   font-size: 64px;
@@ -46,12 +53,6 @@
 /******* join / login ********/
 .formContainer {
   padding: 250px 50px 200px 50px;
-}
-
-#sending {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
 }
 
 .joinFileBtn:hover {
