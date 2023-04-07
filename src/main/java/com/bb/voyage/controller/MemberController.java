@@ -124,6 +124,23 @@ public class MemberController {
       }
     }
 
-   
+    @PostMapping("/deleteProcess")
+    @ResponseBody
+    public Map<String, Object> deleteProcess(
+    MemberDto memberDto,
+    HttpServletRequest request,
+    RedirectAttributes redirectAttributes)  {
+    int result = memberService.deleteMember(memberDto);
+    System.out.println(result);
+    Map<String, Object> sendJson = new HashMap<>();
+    if (result > 0) {
+      HttpSession session = request.getSession();
+      session.removeAttribute("loggedMember");
+      sendJson.put("msg", "ok");
+    } else {
+      sendJson.put("msg", "fail");
+    }
+    return sendJson;
+    }
     
 }
